@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 
 import java.util.List;
@@ -37,9 +38,10 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         //Get the data at position
-        tweets.get(position);
+        Tweet tweet = tweets.get(position);
 
         //Bind the data with view holder
+        holder.bind(tweet);
     }
 
     @Override
@@ -59,6 +61,12 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
             tvBody = itemView.findViewById(R.id.tvBody);
             tvScreenName = itemView.findViewById(R.id.tvScreenName);
+        }
+
+        public void bind(Tweet tweet) {
+            tvBody.setText(tweet.body);
+            tvScreenName.setText(tweet.user.screenName);
+            Glide.with(context).load(tweet.user.profileImageUrl).into(ivProfileImage);
         }
     }
 }
