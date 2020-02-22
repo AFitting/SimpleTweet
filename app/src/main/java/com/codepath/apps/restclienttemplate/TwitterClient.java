@@ -26,8 +26,6 @@ import java.util.Properties;
  */
 public class TwitterClient extends OAuthBaseClient {
 
-
-
     public static final BaseApi REST_API_INSTANCE = TwitterApi.instance(); // Change this
     public static final String REST_URL = "https://api.twitter.com/1.1"; // Change this, base API URL
     public static final String REST_CONSUMER_KEY = com.codepath.apps.restclienttemplate.BuildConfig.CONSUMER_KEY;       // Change this inside apikey.properties
@@ -60,12 +58,11 @@ public class TwitterClient extends OAuthBaseClient {
     }
 
     public void publishTweet(String tweetContent, JsonHttpResponseHandler handler) {
-        String apiUrl = getApiUrl("statuses/home_timeline.json");
+        String apiUrl = getApiUrl("statuses/update.json");
         // Can specify query string params directly or through RequestParams.
         RequestParams params = new RequestParams();
-        params.put("count", 25);
-        params.put("since_id", 1);
-        client.get(apiUrl, params, handler);
+        params.put("status", tweetContent);
+        client.post(apiUrl, params, "" ,handler);
     }
 
     /* 1. Define the endpoint URL with getApiUrl and pass a relative path to the endpoint
