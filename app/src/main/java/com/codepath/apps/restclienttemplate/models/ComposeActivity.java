@@ -18,6 +18,7 @@ import com.codepath.apps.restclienttemplate.R;
 import com.codepath.apps.restclienttemplate.TwitterApp;
 import com.codepath.apps.restclienttemplate.TwitterClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
+import com.github.scribejava.apis.TwitterApi;
 
 import org.json.JSONException;
 import org.parceler.Parcels;
